@@ -56,7 +56,7 @@ const ProfilePage = () => {
                 // Fallback: If no image, show an Avatar placeholder with initial
                 <div className="avatar placeholder size-32">
                   <div className="bg-neutral text-neutral-content w-full h-full flex items-center justify-center rounded-full">
-                    <span className="text-3xl">
+                    <span className="text-5xl">
                       {getInitials(authUser?.fullName)}
                     </span>
                   </div>

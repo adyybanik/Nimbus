@@ -9,9 +9,9 @@ const Navbar = () => {
   backdrop-blur-lg bg-base-100/80">
     <div className="container mx-auto px-4 py-1">
       <div className="flex items-center justify-between h-20">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="flex items-end gap-2.5 hover:opacity-80 transition-all">
-            <div className="w-24 py-1 rounded-lg bg-primary/10 flex items-center justify-center">
+        <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center hover:opacity-80 transition-all">
+            <div className="w-24 h-24 flex items-center justify-center">
               {/* Replace the icon with your logo image */}
               <img
                 src="/nimbus.png"
@@ -19,14 +19,15 @@ const Navbar = () => {
                 className="w-20 h-20"
               />
             </div>
+            <h1 className="text-3xl font-bold underline underline-offset-4">Nimbus</h1>
           </Link>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-6">
             <Link
               to={"/settings"}
               className={`
-              btn btn-sm gap-2 transition-colors
+              btn btn-m gap-2 transition-colors
               
               `}
             >
@@ -36,14 +37,14 @@ const Navbar = () => {
 
             {authUser && (
               <>
-                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
+                <Link to={"/profile"} className={`btn btn-m gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
                 <button className="flex gap-2 items-center" onClick={logout}>
-                  <LogOut className="size-5" />
-                  <span className="hidden sm:inline">Logout</span>
+                  <LogOut className="size-m" />
+                  <span className="hidden sm:inline text-m">Logout</span>
                 </button>
               </>
             )}
