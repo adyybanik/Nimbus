@@ -21,6 +21,18 @@ const ProfilePage = () => {
     };
   };
 
+  function getInitials(fullName) {
+    if (!fullName) return "?";
+  
+    // Split on whitespace and remove any empty entries
+    const parts = fullName.split(" ").filter(Boolean);
+    
+    // Get first character of each part, uppercase it, and join
+    const initials = parts.map(namePart => namePart[0]?.toUpperCase()).join("");
+  
+    return initials || "?";
+  }
+
   return (
     <div className="h-screen pt-20">
       <div className="max-w-2xl mx-auto p-4 py-8">
@@ -34,11 +46,22 @@ const ProfilePage = () => {
 
           <div className="flex flex-col items-center gap-4">
             <div className="relative">
-              <img
-                src={selectedImg || authUser.profilePic || "/avatar.jpg"}
-                alt="Profile"
-                className="size-32 rounded-full object-cover border-4 "
-              />
+              {selectedImg || authUser?.profilePic ? (
+                <img
+                  src={selectedImg || authUser.profilePic}
+                  alt="Profile"
+                  className="size-32 rounded-full object-cover border-4"
+                />
+              ) : (
+                // Fallback: If no image, show an Avatar placeholder with initial
+                <div className="avatar placeholder size-32">
+                  <div className="bg-neutral text-neutral-content w-full h-full flex items-center justify-center rounded-full">
+                    <span className="text-3xl">
+                      {getInitials(authUser?.fullName)}
+                    </span>
+                  </div>
+                </div>
+              )}
               <label
                 htmlFor="avatar-upload"
                 className={`
