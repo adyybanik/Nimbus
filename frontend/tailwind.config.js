@@ -16,4 +16,4 @@ export default {
     themes: ["synthwave"]
   }
     
-}
+} 
