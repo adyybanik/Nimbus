@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:5001": "/"
 
 export const useAuthStore = create((set, get) => ({
+export const useAuthStore = create((set, get) => ({
     authUser: null,
     isSigningUp: false,
     isLoggingIn: false,
@@ -13,11 +14,13 @@ export const useAuthStore = create((set, get) => ({
     isCheckingAuth: true,
     onlineUsers: [],
     socket: null,
+    socket: null,
 
     checkAuth: async() => {
         try {
             const res = await axiosInstance.get("/auth/check");
             set ({ authUser: res.data })
+            get().connectSocket();
             get().connectSocket();
         } catch (error) {
             console.log("Error in checkAuth:", error);
@@ -34,6 +37,7 @@ export const useAuthStore = create((set, get) => ({
             set({ authUser: res.data });
             toast.success("Account created successfully");
             get().connectSocket();
+            get().connectSocket();
             
         } catch (error) {
             toast.error(error.response.data.message);
@@ -48,6 +52,8 @@ export const useAuthStore = create((set, get) => ({
             const res = await axiosInstance.post("/auth/login", data);
             set({ authUser: res.data });
             toast.success("Logged In successfully");
+
+            get().connectSocket();
 
             get().connectSocket();
         } catch (error) {
